@@ -1,4 +1,4 @@
-name: ai_sms_tracker
+name: memo_manager
 description: Local AI log app
 publish_to: 'none'
 version: 1.0.0+1
@@ -9,7 +9,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_gemma: ^0.2.0
   sqflite: ^2.3.0
   path: ^1.9.0
 
