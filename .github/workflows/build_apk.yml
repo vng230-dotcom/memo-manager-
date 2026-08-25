@@ -24,18 +24,20 @@ jobs:
           flutter-version: '3.x'
           channel: 'stable'
 
-      - name: Generate Android Skeleton
-        run: flutter create . --platforms=android
-
-      - name: Install Dependencies
-        run: flutter pub get
-
-      - name: Build APK
-        run: flutter build apk --release --no-tree-shake-icons
+      - name: Build App with Automated Skeleton
+        run: |
+          mkdir build_env
+          cd build_env
+          flutter create . --org com.example --platforms=android
+          cp -rf ../lib .
+          cp -f ../pubspec.yaml .
+          flutter pub get
+          flutter build apk --release --no-tree-shake-icons
+          cp build/app/outputs/flutter-apk/app-release.apk ../app-release.apk
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: app-release-apk
-          path: build/app/outputs/flutter-apk/app-release.apk
+          path: app-release.apk
           
