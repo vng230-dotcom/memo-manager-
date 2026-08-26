@@ -24,7 +24,7 @@ jobs:
           flutter-version: '3.x'
           channel: 'stable'
 
-      - name: Build App with Automated Skeleton
+      - name: Build Universal Release APK
         run: |
           mkdir build_env
           cd build_env
@@ -32,12 +32,12 @@ jobs:
           cp -rf ../lib .
           cp -f ../pubspec.yaml .
           flutter pub get
-          flutter build apk --debug --no-tree-shake-icons
-          cp build/app/outputs/flutter-apk/app-debug.apk ../app-debug.apk
+          flutter build apk --release --no-shrink --no-tree-shake-icons
+          cp build/app/outputs/flutter-apk/app-release.apk ../app-release.apk
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: app-debug-apk
-          path: app-debug.apk
+          name: app-release-apk
+          path: app-release.apk
           
