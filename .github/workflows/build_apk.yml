@@ -28,11 +28,11 @@ jobs:
         run: |
           mkdir build_env
           cd build_env
-          flutter create . --org com.vngapp --app-name mymemotracker --platforms=android
+          flutter create . --org com.vngapp --project-name memo_manager --platforms=android
           cp -rf ../lib .
           cp -f ../pubspec.yaml .
           flutter pub get
-          flutter build apk --debug --target-platform android-arm64 --no-tree-shake-icons
+          flutter build apk --debug --no-tree-shake-icons
           cp build/app/outputs/flutter-apk/app-debug.apk ../app-debug.apk
 
       - name: Upload APK Artifact
